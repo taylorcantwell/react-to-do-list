@@ -1,16 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import { createStore } from 'redux';
+import App from './App';
+import { loadState, saveState } from './localStorage';
 import rootReducer from './reducers';
-import { saveState, loadState } from './localStorage';
 
 const persistedState = loadState();
 const store = createStore(rootReducer, persistedState);
 store.subscribe(() => {
-    console.log('store changed');
     saveState(store.getState());
 });
 

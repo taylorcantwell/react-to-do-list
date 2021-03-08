@@ -1,15 +1,11 @@
-import React from 'react';
-import updateUrgency from '../actions/updateUrgency';
-import { useSelector, useDispatch } from 'react-redux';
 import { Select } from '@chakra-ui/react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import updateUrgency from '../actions/updateUrgency';
 
 const Selector = ({ id, urgency }) => {
-    //! init dispatch
     const dispatch = useDispatch();
-
-    //!event handler
     const urgencyChange = (urgency) => {
-        console.log(urgency, id);
         dispatch(updateUrgency(id, urgency));
     };
 

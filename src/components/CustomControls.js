@@ -1,26 +1,21 @@
-import React, { useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import updateTodo from '../actions/updateTodo';
+import { CheckIcon, CloseIcon, EditIcon } from '@chakra-ui/icons';
 import {
+    ButtonGroup,
     Editable,
     EditableInput,
     EditablePreview,
-    ButtonGroup,
     Flex,
     IconButton,
     Spacer,
 } from '@chakra-ui/react';
+import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import updateTodo from '../actions/updateTodo';
 
-import { EditIcon, CheckIcon, CloseIcon } from '@chakra-ui/icons';
-
-const CustomControlsExample = ({ task, id }) => {
-    //! init useRef
+const CustomControls = ({ task, id }) => {
     const reference = useRef();
-    //! init dispatch
     const dispatch = useDispatch();
-    /* Here's a custom control */
     const updateTaskConfirmation = () => {
-        console.log(reference.current.value, id);
         dispatch(updateTodo(reference.current.value, id));
     };
 
@@ -69,4 +64,4 @@ const CustomControlsExample = ({ task, id }) => {
     );
 };
 
-export default CustomControlsExample;
+export default CustomControls;

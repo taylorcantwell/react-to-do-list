@@ -1,31 +1,25 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-//!components
-import CustomControlsExample from './CustomControlsExample';
-import Selector from './Selector';
-//!actions
-import deleteTodo from '../actions/deleteTodo';
-import completeTodo from '../actions/completeToDo';
-import redoTodo from '../actions/redoTodo';
-import updateTodo from '../actions/updateTodo';
-//!
+import {
+    Box,
+    Flex,
+    IconButton,
+    ListItem,
+    Spacer,
+    useToast,
+} from '@chakra-ui/react';
+import { AnimatePresence, motion } from 'framer-motion';
+import React from 'react';
+import { IoReturnDownBack } from 'react-icons/io5';
 import { TiTickOutline } from 'react-icons/ti';
 import { VscChromeClose } from 'react-icons/vsc';
-import { IoReturnDownBack } from 'react-icons/io5';
-import { motion, AnimatePresence } from 'framer-motion';
-import {
-    ListItem,
-    Flex,
-    Spacer,
-    IconButton,
-    useToast,
-    Box,
-} from '@chakra-ui/react';
+import { useDispatch } from 'react-redux';
+import completeTodo from '../actions/completeToDo';
+import deleteTodo from '../actions/deleteTodo';
+import redoTodo from '../actions/redoTodo';
+import CustomControls from './CustomControls';
+import Selector from './Selector';
 
 const ListItems = ({ task, id, status, urgency }) => {
-    // //! determine styling
-
-    const urgencyStyling = (currentList) => {
+    const urgencyStyling = () => {
         switch (urgency) {
             case 'Non-urgent':
                 return 'nonUrgent';
@@ -33,16 +27,14 @@ const ListItems = ({ task, id, status, urgency }) => {
                 return 'moderatelyUrgent';
             case 'Urgent':
                 return 'Urgent';
+            default:
+                return 'Non-urgent';
         }
     };
 
-    //! init dispatch
     const dispatch = useDispatch();
-
-    //! init toast function
     const toast = useToast();
 
-    //!event handlers
     const onClickDeleteTask = () => {
         dispatch(deleteTodo(id));
     };
@@ -54,17 +46,6 @@ const ListItems = ({ task, id, status, urgency }) => {
     const onClickRedoTask = () => {
         dispatch(redoTodo(id));
     };
-
-    const onChangeUpdateTask = (e) => {
-        dispatch(updateTodo(e.target.value, id));
-    };
-
-    //! init create chakra and framer motion component
-
-    // //! on initial render, fade in
-    // useEffect(() => {
-    //     console.log('inital render');
-    // });
 
     return (
         <AnimatePresence>
@@ -101,7 +82,7 @@ const ListItems = ({ task, id, status, urgency }) => {
                                 />
                             )}
 
-                            <CustomControlsExample task={task} id={id} />
+                            <CustomControls task={task} id={id} />
                             <Selector id={id} urgency={urgency} />
                             <Spacer />
                             <IconButton

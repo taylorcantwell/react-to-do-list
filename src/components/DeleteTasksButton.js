@@ -1,26 +1,22 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
 import {
     AlertDialog,
     AlertDialogBody,
+    AlertDialogContent,
     AlertDialogFooter,
     AlertDialogHeader,
-    AlertDialogContent,
     AlertDialogOverlay,
     Button,
 } from '@chakra-ui/react';
-
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import deleteAllTodo from '../actions/deleteAllTodo';
-import { useSelector } from 'react-redux';
 
 const DeleteTasksButton = () => {
-    //! init dispatch
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = React.useState(false);
     const onClose = () => setIsOpen(false);
     const cancelRef = React.useRef();
 
-    //!Grab task count from state
     const tasks = useSelector((state) => {
         return state.tasks;
     });

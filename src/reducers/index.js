@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
+import currentTabReducer from './currentTabReducer';
 import todoReducer from './todoReducer';
 import userInput from './userInput';
-import currentTabReducer from './currentTabReducer';
 
 const rootReducer = combineReducers({
     tasks: todoReducer,

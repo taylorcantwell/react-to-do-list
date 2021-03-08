@@ -1,39 +1,27 @@
-import React, { useRef, useEffect } from 'react';
 import {
-    Flex,
-    Spacer,
     Button,
-    Input,
+    Flex,
     FormControl,
+    Input,
+    Spacer,
     useToast,
 } from '@chakra-ui/react';
-
-//! actions
-import inputUser from '../actions/inputUser';
+import React, { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import addTodo from '../actions/addTodo';
-
-import { useSelector, useDispatch } from 'react-redux';
+import inputUser from '../actions/inputUser';
 
 const AddTask = () => {
-    //! init useDispatch hook
     const dispatch = useDispatch();
-
-    //! Grab from state
     const taskInput = useSelector((state) => {
         return state.input;
     });
 
-    const tasks = useSelector((state) => {
-        return state;
-    });
-
-    //!focus on the input by using useRef and after it's render, use useEffect to focus it!
     const reference = useRef(null);
     useEffect(() => {
         reference.current.focus();
     });
 
-    //!event handlers
     const onChangeAddTaskHandler = (e) => {
         dispatch(inputUser(e.target.value));
     };
@@ -44,9 +32,6 @@ const AddTask = () => {
     };
 
     const toast = useToast();
-
-    //! if task input is false, disable add button
-    //!clear input when user presses the add button by updating piece of state to " "
 
     return (
         <FormControl id="task" my={5}>

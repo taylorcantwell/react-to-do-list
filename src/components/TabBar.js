@@ -1,35 +1,26 @@
+import {
+    Link,
+    Tab,
+    TabList,
+    TabPanel,
+    TabPanels,
+    Tabs,
+} from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 import React, { useEffect } from 'react';
-import TaskList from './TaskList';
-import updateTab from '../actions/updateTab';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     Link as RouterLink,
     Route,
-    useLocation,
     useHistory,
+    useLocation,
 } from 'react-router-dom';
-
-import { motion } from 'framer-motion';
-
-import {
-    Tabs,
-    TabList,
-    TabPanels,
-    Tab,
-    TabPanel,
-    Link,
-} from '@chakra-ui/react';
-
-//! init create chakra and framer motion component
-// const MotionTaskList = motion.custom(TaskList);
+import updateTab from '../actions/updateTab';
+import TaskList from './TaskList';
 
 const TabBar = () => {
-    //! init history
     const history = useHistory();
-    //! init dispatch
     const dispatch = useDispatch();
-
-    //!Grab from state
     const tasks = useSelector((state) => {
         return state.tasks;
     });
@@ -38,32 +29,23 @@ const TabBar = () => {
         return state.activeTab;
     });
 
-    //! helper function to grab the amount of tasks by status (all, complete, active)
     const countList = (status) => {
         return tasks.filter((task) => {
             return task.status === status;
         }).length;
     };
 
-    //! update active tab when user plugs in a different pathname
-    //! necessary to sync active tab piece of state and the url
     const location = useLocation().pathname;
-    console.log(location);
-    console.log(activeTab);
+
     if (location === '/all') {
-        console.log('this only rerenders twice?');
         dispatch(updateTab(0));
     }
     if (location === '/active') {
-        console.log('id as active chaning state');
         dispatch(updateTab(1));
     }
     if (location === '/complete') {
         dispatch(updateTab(2));
     }
-
-    //!update url per last active tab from local storage!
-    //!Important for react router to display tab based on url!
 
     useEffect(() => {
         if (activeTab === 0) {
@@ -75,7 +57,7 @@ const TabBar = () => {
         if (activeTab === 2) {
             history.replace({ pathname: `/complete` });
         }
-    }, [activeTab]);
+    }, [activeTab, history]);
 
     return (
         <Tabs
@@ -94,6 +76,7 @@ const TabBar = () => {
                         </Link>
                     )}
                 </Tab>
+
                 <Tab isDisabled={!countList('active')} p={0}>
                     {countList('active') === 0 ? (
                         'Active'
@@ -109,6 +92,7 @@ const TabBar = () => {
                         </Link>
                     )}
                 </Tab>
+
                 <Tab isDisabled={!countList('complete')} p={0}>
                     {countList('complete') === 0 ? (
                         'Complete'

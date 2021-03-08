@@ -41,7 +41,6 @@ const todoReducer = (state = [], action) => {
                         action.payload.input === ''
                             ? 'empty input!'
                             : action.payload.input;
-                    console.log(input);
                     task.task = input;
                     return task;
                 } else return task;
@@ -53,7 +52,6 @@ const todoReducer = (state = [], action) => {
         case 'UPDATE_URGENCY':
             return state.map((task) => {
                 if (task.id === action.payload.id) {
-                    console.log(action.payload.urgency);
                     task.urgency = action.payload.urgency;
                     return task;
                 } else return task;

@@ -1,10 +1,9 @@
+import { ChakraProvider, Container, Divider, Heading } from '@chakra-ui/react';
 import React from 'react';
-
-import TabBar from './components/TabBar.js';
-import DeleteTasksButton from './components/DeleteTasksButton';
-import AddTask from './components/AddTask';
-import { ChakraProvider, Container, Heading, Divider } from '@chakra-ui/react';
 import theme from './chakraTheme';
+import AddTask from './components/AddTask';
+import DeleteTasksButton from './components/DeleteTasksButton';
+import TabBar from './components/TabBar.js';
 
 const App = () => {
     return (
