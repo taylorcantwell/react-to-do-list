@@ -2,7 +2,7 @@
 
 ## Intro
 
-As rite of passage, I put a to-do list together with the intention of learning React and Redux. I really enjoyed this because I just kept adding new features to it and just had a lot of fun. I also had a look at Chakra-UI as a component library. I found that I really like using Redux.
+As rite of passage, I put a to-do list together with the intention of learning React and Redux. I really enjoyed this because I just kept adding new features to it and just had a lot of fun. I also had a look at Chakra-UI as a component library. I used local storage to persist the data, and used Redux to handle the CRUD actions.
 
 ![Alt Text](https://i.gyazo.com/f9ef79e578f92b2787522cc12749fb49.gif)
 ![Alt Text](https://i.gyazo.com/7ada031b9cf36018d00ef417ddb23116.gif)
