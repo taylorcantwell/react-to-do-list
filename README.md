@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to to-do-list 👋</h1>
+<h1 align="center">React-CRUD-to-do-list 👋</h1>
 
 ## Intro
 
